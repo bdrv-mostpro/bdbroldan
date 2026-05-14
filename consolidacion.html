@@ -137,7 +137,7 @@
             font-size: 10px;
             font-weight: 700;
             text-align: center;
-            margin-top: 3px;
+            margin-top: 2px;
             padding: 2px 2px;
         }
 
@@ -185,60 +185,94 @@
         /* ====================== SECCIÓN OFICINA ====================== */
         .office-section_con {
             margin: 2px;
-            margin-bottom: 0px;
+            margin-bottom: 0;
             display: grid;
             grid-template-columns: 70px 1fr 140px 1fr;
             border-left: 1px solid #000;
             border-top: 1px solid #000;
-            min-height: 50px;
         }
 
+        /* Contenedor de cada campo */
         .office-section_con .form-field_con {
-            min-height: 50px;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            min-height: unset;
         }
 
+        /* Etiquetas (arriba) */
+        .office-section_con .form-label_con {
+            min-height: 11px;
+            font-size: 8px;
+            padding: 0;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            /* Valores (abajo) */
+            .office-section_con .form-value_con {
+                min-height: 11px;
+                font-size: 8px;
+                padding: 0;
+                line-height: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         /* ====================== SECCIÓN CLIENTE ====================== */
         .client-grid_con {
             margin: 0px 2px 2px 2px;
             margin-bottom: 0px;
             display: grid;
-            grid-template-columns: 1fr 30px 130px 1fr 130px;
+            grid-template-columns: 1fr 50px 130px 1fr 130px;
             border-left: 1px solid #000;
             border-top: 1px solid #000;
         }
 
-.client-grid_con .form-label_con {
-    min-height: 16px;
-    font-size: 7px;
-    padding: 0;
-}
+        .client-grid_con .form-label_con {
+            min-height: 11px;
+            font-size: 8px;
+            padding: 0;
+        }
 
-.client-grid_con .form-value_con {
-    min-height: 14px;
-    font-size: 7px;
-    padding: 0;
-}
+        .client-grid_con .form-value_con {
+            min-height: 11px;
+            font-size: 8px;
+            padding: 0;
+        }
 
         /* ====================== SECCIÓN ACTIVIDAD ====================== */
         .activity-grid_con {
-            margin: 0px 2px 2px 2px;
+            margin: 0px 2px 0px 2px;
             display: grid;
             grid-template-columns: 140px 130px 1fr 160px 100px;
             border-left: 1px solid #000;
         }
-.activity-grid_con .form-label_con {
-    min-height: 16px;
-    font-size: 7px;
-    padding: 0;
-}
+            .activity-grid_con .form-label_con {
+                min-height: 11px;
+                font-size: 8px;
+                padding: 0;
+            }
 
-.activity-grid_con .form-value_con {
-    min-height: 14px;
-    font-size: 7px;
-    padding: 0;
-}
+            .activity-grid_con .form-value_con {
+                min-height: 11px;
+                font-size: 8px;
+                padding: 0;
+            }
 
         /* ====================== SECCIÓN OBLIGACIONES ====================== */
+            .obligations-header_con {
+            background: #595555;
+            color: white;
+            text-align: center;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px;
+            border: 1px solid #000; /* todos los bordes */
+        }
+
         .normalization-container_con {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
@@ -247,52 +281,64 @@
         }
 
         /* Tabla de obligaciones */
-        .obligations-table-new_con {
-            border-right: 1px solid #000;
-            border-left: 1px solid #000;
-        }
-
-        .grid-header-row_con {
+            .grid-header-row_con {
             display: grid;
             grid-template-columns: 100px 1fr 1fr 1fr 1fr;
-            background: #A6A6A6;
-            color: white;
+            background: #595555;
+            color: #fff;
             font-weight: 700;
-            font-size: 7px;
+            font-size: 8px;
             min-height: 16px;
             text-align: center;
-            border-bottom: 1px solid #000;
-        }
+            }
 
-        .grid-data-row_con {
-            display: grid;
-            grid-template-columns: 100px 1fr 1fr 1fr 1fr;
-            min-height: 15px;
-            border-bottom: 1px solid #000;
-        }
 
-        .grid-cell_con {
-            border-right: 1px solid #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 7px;
-            line-height:1;
-            padding: 0px;
-        }
+            .grid-header-row_con .grid-cell_con:last-child {
+                border-right: none;
+            }
+            .grid-header-row_con .grid-cell_con {
+                border: solid #000;
+                border-width: 0px 1px 0px 1px;
+                
+            }
+            /* ================= FILAS ================= */
+            .grid-data-row_con {
+                display: grid;
+                grid-template-columns: 100px 1fr 1fr 1fr 1fr;
+                min-height: 15px;
+                border-left: 1px solid #000;
+                border-right: 1px solid #000;
+                border-bottom: 1px solid #000;
+            }
 
-        .grid-cell_con:last-child {
-            border-right: none;
-        }
+            /* celdas */
+            .grid-data-row_con .grid-cell_con {
+                border-right: 1px solid #000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 8px;
+                line-height: 1;
+                padding: 0;
+            }
 
-        /* Panel de condiciones */
-        .conditions-panel_con .row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
+            .grid-data-row_con .grid-cell_con:last-child {
+                border-right: none;
+            }
+
+          /* ======================TITLE CONDITIONS BAJA EN CUENTA ====================== */
+            .conditions-header_con {
+            background: #595555;
+            color: white;
+            text-align: center;
+            font-size: 9px;
+            font-weight: 700;
             padding: 2px;
+            border-right: 1px solid #000;
+            border-left: 1px solid #000;
+            border: solid #000;
+            border-width: 1px 1px 0px 1px;
         }
-
         .condition-item_con {
             display: flex;
             justify-content: flex-start;
@@ -305,28 +351,33 @@
             margin-left: 5px;
         }
 
+
         /* Tabla grid de condiciones */
         .grid-conditions {
         display: grid;
         grid-template-columns: 40% 60%;
-        font-size: 7px;           /* más pequeño */
-        border: 1px solid #000;
-        line-height: 1;           /* reduce altura del texto */
+        font-size: 8px;    
+        border: solid #000;
+        border-width: 1px 1px 0px 1px;
+        line-height: 1;        
         }
 
         .grid-conditions div {
             padding: 2px 6px;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1.5px solid #000;
         }
 
         .grid-conditions div:nth-child(odd) {
             font-weight: 600;
-            border-right: 1px solid #ccc;
+            border-right: 1.5px solid #000;
         }
 
         .grid-conditions div:nth-child(even) {
             text-align: right;
         }
+
+
+
 
         /* ====================== TÉRMINOS Y CONDICIONES ====================== */
         .terms-text_con {
@@ -343,7 +394,7 @@
             margin-bottom: 1px;
         }
 
-        .terms-text_Ampliacion {
+        .terms-text_consolidacion {
             border: 1px solid #000;
             padding: 5px;
             font-size: 8px;
@@ -358,7 +409,7 @@
             box-sizing: border-box;
         }
 
-        .terms-text_Ampliacion p {
+        .terms-text_consolidacion p {
             margin-bottom: 1px;
             overflow-wrap: break-word;
             word-break: break-word;
@@ -379,7 +430,7 @@
             border-right: 1px solid #000;
             border-bottom: 1px solid #000;
             padding: 3px;
-            font-size: 7px;
+            font-size: 8px;
             background: white;
             font-weight: 600;
         }
@@ -388,7 +439,7 @@
             border-right: 1px solid #000;
             border-bottom: 1px solid #000;
             padding: 1px;
-            font-size: 9px;
+            font-size: 8px;
             text-align: center;
             background: white;
             display: flex;
@@ -422,7 +473,6 @@
 
         .observaciones-answer_con {
             flex: 1;
-            padding: 2px;
             font-size: 8px;
         }
 
@@ -628,7 +678,7 @@
                     <div class="form-value_con" id="codOficina_consolidacion"></div>
                 </div>
                 <div class="form-field_con">
-                    <div class="form-label_con">Oficina en que se realiza<br> la gestión de recuperación</div>
+                    <div class="form-label_con">Oficina en que se realiza la gestión de recuperación</div>
                     <div class="form-value_con" id="nombreOficina_consolidacion"></div>
                 </div>
                 <div class="form-field_con">
@@ -698,7 +748,7 @@
 
                 <!-- Tabla de obligaciones -->
                 <div class="obligations-table-new_con">
-                    <div style="background: #A6A6A6; color: white; text-align: center; font-size: 9px; font-weight: 700; padding: 2px; border-bottom: 1px solid #000;">
+                    <div class="obligations-header_con">
                         Datos Obligaciones
                     </div>
                     <div class="grid-header-row_con">
@@ -708,55 +758,15 @@
                         <div class="grid-cell_con">int mora</div>
                         <div class="grid-cell_con">Int ExtraC "TC"</div>
                     </div>
-                    <div class="grid-data-row_con">
-                        <div class="grid-cell_con" id="numObligacion_1_consolidacion"></div>
-                        <div class="grid-cell_con" id="saldoTotal_1_consolidacion"></div>
-                        <div class="grid-cell_con" id="intCorrientes_1_consolidacion"></div>
-                        <div class="grid-cell_con" id="intMora_1_consolidacion"></div>
-                        <div class="grid-cell_con" id="intExtraC_1_consolidacion"></div>
-                    </div>
-                    <div class="grid-data-row_con">
-                        <div class="grid-cell_con" id="numObligacion_2_consolidacion"></div>
-                        <div class="grid-cell_con" id="saldoTotal_2_consolidacion"></div>
-                        <div class="grid-cell_con" id="intCorrientes_2_consolidacion"></div>
-                        <div class="grid-cell_con" id="intMora_2_consolidacion"></div>
-                        <div class="grid-cell_con" id="intExtraC_2_consolidacion"></div>
-                    </div>
-                    <div class="grid-data-row_con">
-                        <div class="grid-cell_con" id="numObligacion_3_consolidacion"></div>
-                        <div class="grid-cell_con" id="saldoTotal_3_consolidacion"></div>
-                        <div class="grid-cell_con" id="intCorrientes_3_consolidacion"></div>
-                        <div class="grid-cell_con" id="intMora_3_consolidacion"></div>
-                        <div class="grid-cell_con" id="intExtraC_3_consolidacion"></div>
-                    </div>
-                    <div class="grid-data-row_con">
-                        <div class="grid-cell_con" id="numObligacion_4_consolidacion"></div>
-                        <div class="grid-cell_con" id="saldoTotal_4_consolidacion"></div>
-                        <div class="grid-cell_con" id="intCorrientes_4_consolidacion"></div>
-                        <div class="grid-cell_con" id="intMora_4_consolidacion"></div>
-                        <div class="grid-cell_con" id="intExtraC_4_consolidacion"></div>
-                    </div>
-                    <div class="grid-data-row_con">
-                        <div class="grid-cell_con" id="numObligacion_5_consolidacion"></div>
-                        <div class="grid-cell_con" id="saldoTotal_5_consolidacion"></div>
-                        <div class="grid-cell_con" id="intCorrientes_5_consolidacion"></div>
-                        <div class="grid-cell_con" id="intMora_5_consolidacion"></div>
-                        <div class="grid-cell_con" id="intExtraC_5_consolidacion"></div>
-                    </div>
-                    <div class="grid-data-row_con">
-                        <div class="grid-cell_con" id="numObligacion_6_consolidacion"></div>
-                        <div class="grid-cell_con" id="saldoTotal_6_consolidacion"></div>
-                        <div class="grid-cell_con" id="intCorrientes_6_consolidacion"></div>
-                        <div class="grid-cell_con" id="intMora_6_consolidacion"></div>
-                        <div class="grid-cell_con" id="intExtraC_6_consolidacion"></div>
+                    <div id="filas-obligaciones-consolidacion">  
                     </div>
                 </div>
 
                 <!-- Panel de condiciones -->
                 <div class="conditions-panel_con">
-                    <div style="background: #A6A6A6; color: white; text-align: center; font-size: 9px; font-weight: 700; padding: 2px; border-bottom: 1px #000;">
-                        Condiciones baja en cuenta
-                    </div>
+                        <div class="conditions-header_con">
+                            Condiciones baja en cuenta
+                        </div>
                     <div class="grid-conditions">
                         <div>% Baja en cuenta Int Corrientes:</div>
                         <div id="pctBenIntCorr_consolidacion"></div>
@@ -792,7 +802,7 @@
             <!-- ======================== ACEPTACIÓN / TÉRMINOS ======================== -->
             <div class="section-header_con">ACEPTACIÓN DE LA GESTIÓN DE RECUPERACIÓN Y AUTORIZACIONES</div>
 
-            <div class="terms-text_Ampliacion" id="terminosCondiciones_ampliacion">
+            <div class="terms-text_consolidacion" id="terminosCondiciones_consolidacion">
                 <p>Desde ahora acepto las nuevas condiciones de pago en cuanto a plazo tasa y cuotas que sean aprobadas,
                     esta solicitud de modificación de mi crédito será sometida a estudio por parte del Banco de Bogotá,
                     quien tiene la facultad de aprobarla o no; siendo de mi responsabilidad indagar con el Banco sobre
@@ -837,8 +847,8 @@
                     hará el respectivo reporte. En el evento de que esta solicitud sea negada, el Banco puede proceder a la
                     destrucción de los documentos aportados.</p><br>
 
-                <p>Yo <strong><span id="nombreClienteTerd_Ampliacion"></span></strong>
-                    identificado con No. <strong><span id="numDocTerd_Ampliacion"></span></strong>
+                <p>Yo <strong><span id="nombreClienteTerd_consolidacion"></span></strong>
+                    identificado con No. <strong><span id="numDocTerd_consolidacion"></span></strong>
                     manifiesto que la procedencia de los recursos con los que efectúo el (los) pago (s) objeto del presente
                     acuerdo, son de origen lícito y corresponde a
                     <span>________________________________________________________________________</span>
@@ -923,3 +933,5 @@
 
 </body>
 </html>
+
+
