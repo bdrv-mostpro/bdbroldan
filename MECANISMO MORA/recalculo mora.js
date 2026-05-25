@@ -1,6 +1,20 @@
 function RecalculosMora() {
 
     setTimeout(() => {
+       
+        // ============================================
+        // Guardia: esperar a que CalculosMora termine
+        // ============================================
+        if (sessionStorage.calculosMoraListo !== 'si') {
+            const intentos = parseInt(sessionStorage.reintentosRecalculo || '0')
+            if (intentos < 10) {
+                sessionStorage.reintentosRecalculo = intentos + 1
+                setTimeout(RecalculosMora, 200)
+            }
+            return
+        }
+         debugger
+        sessionStorage.reintentosRecalculo = '0'
 
         const safeNumber = val =>
             isNaN(parseFloat(val)) ? 0 : parseFloat(val)
@@ -52,7 +66,6 @@ function RecalculosMora() {
         const PorcentajePagomora1 =
             safeNumber(sessionStorage.PorcentajePagomora1)
 
-        // ExtraC siempre igual a Corriente
         const porcDescIntExtraCTC1 =
             esTarjeta ? PorcPagoMoraIntCte1 : 0
 
@@ -94,26 +107,13 @@ function RecalculosMora() {
 
         let exceso = excesoPago
 
-        let dctoMora = maxmora
-        let dctoCte = maxcte
+        let dctoMora   = maxmora
+        let dctoCte    = maxcte
         let dctoExtraC = maxExtC
 
         // =========================
-        // 1. Reducir Mora primero
-        // =========================
-
-        if (exceso > 0) {
-
-            const reduccionMora =
-                Math.min(dctoMora, exceso)
-
-            dctoMora -= reduccionMora
-            exceso -= reduccionMora
-        }
-
-        // =========================
-        // 2. Reducir Corriente y ExtraC
-        //    simultáneamente
+        // 1. Reducir Corriente y ExtraC
+        //    simultáneamente (primero)
         // =========================
 
         if (exceso > 0) {
@@ -123,24 +123,36 @@ function RecalculosMora() {
 
             if (bolsaSincronizada > 0) {
 
-                // cuánto queda disponible
                 const restante =
                     Math.max(0, bolsaSincronizada - exceso)
 
-                // porcentaje restante común
                 const factor =
                     restante / bolsaSincronizada
 
-                // ambos bajan al mismo tiempo
-                dctoCte =
-                    maxcte * factor
+                dctoCte = maxcte * factor
 
                 if (esTarjeta) {
-
-                    dctoExtraC =
-                        maxExtC * factor
+                    dctoExtraC = maxExtC * factor
                 }
+
+                const reduccionCteExtC =
+                    (maxcte - dctoCte) + (esTarjeta ? (maxExtC - dctoExtraC) : 0)
+
+                exceso -= reduccionCteExtC
             }
+        }
+
+        // =========================
+        // 2. Reducir Mora (al final)
+        // =========================
+
+        if (exceso > 0) {
+
+            const reduccionMora =
+                Math.min(dctoMora, exceso)
+
+            dctoMora -= reduccionMora
+            exceso   -= reduccionMora
         }
 
         // =========================
@@ -152,16 +164,13 @@ function RecalculosMora() {
                 ? (dctoMora / InteresMoraObl) * 100
                 : 0
 
-        // Corriente y ExtraC siempre iguales
         const porcComun =
             maxcte > 0
                 ? (dctoCte / maxcte) * PorcPagoMoraIntCte1
                 : 0
 
-        const porcCteReal = porcComun
-
-        const porcExtraCReal =
-            esTarjeta ? porcComun : 0
+        const porcCteReal    = porcComun
+        const porcExtraCReal = esTarjeta ? porcComun : 0
 
         // =========================
         // Set campos Corriente
