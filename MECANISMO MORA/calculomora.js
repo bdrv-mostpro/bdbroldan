@@ -1,6 +1,5 @@
 function CalculosMora(){
     debugger
-    
     let tarjeta
     sessionStorage.removeItem('InteresesExtracontablesObl')
     sessionStorage.removeItem('PorcPagoMoraIntCte1')
@@ -53,9 +52,8 @@ function CalculosMora(){
                 porcDescIntMoraIcs = parseInt(e.dataItem.DtoInteresesMoraCampana)
             }else{
                 sessionStorage.campanamora = 'no'
-                porcDescIntMoraIcs = response[0][0].PorcPagoMoraIntCte
-                porcDescIntCteIcs  = response[0][0].PorcentajePagomora
-                
+                porcDescIntCteIcs  = response[0][0].PorcPagoMoraIntCte
+                porcDescIntMoraIcs = response[0][0].PorcentajePagomora
             }
 
             const porcDescIntExtraCTC = tarjeta ? porcDescIntCteIcs : 0

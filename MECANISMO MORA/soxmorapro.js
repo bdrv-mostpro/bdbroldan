@@ -12,8 +12,8 @@ function soxMora(){
   }
 
   let pagoMinimo   = getFieldValue('af9911f8-4a06-4483-b25d-6bec9e1647fe') || '';
-  let descIntMora  = getFieldValue('64fcdf9f-c6b3-4742-b4b2-e259759290d9') || '';
-  let descIntCte   = getFieldValue('e076d650-c5d6-48b1-920b-295d431604b0') || '';
+  let descIntMora  = getFieldValue('64fcdf9f-c6b3-4742-b4b2-e259759290d9') || '0';
+  let descIntCte   = getFieldValue('e076d650-c5d6-48b1-920b-295d431604b0') || '0';
   let descTotal    = getFieldValue('6af98cad-1f96-4ad5-b33c-b0ddc8f68133') || '';
   let pagoSNR      = getFieldValue('3539dba8-0c22-491e-a05b-84642d675d59') || '';
   let excepcion    = getFieldValue('d3b8782c-c94a-4b7a-a2aa-00baba7bfbd5') || '';
