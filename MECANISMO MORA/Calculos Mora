@@ -150,20 +150,28 @@ function RecalculosMora() {
         let dctoCte   = maxcte
         let dctoExtraC = maxExtC
 
-        // 1. Reducir Corriente y ExtraC simultáneamente (primero)
-        if (exceso > 0) {
-            const bolsaSincronizada = maxcte + (esTarjeta ? maxExtC : 0)
-            if (bolsaSincronizada > 0) {
-                const restante = Math.max(0, bolsaSincronizada - exceso)
-                const factor   = restante / bolsaSincronizada
-                dctoCte = maxcte * factor
-                if (esTarjeta) dctoExtraC = maxExtC * factor
-                const reduccionCteExtC = (maxcte - dctoCte) + (esTarjeta ? (maxExtC - dctoExtraC) : 0)
-                exceso -= reduccionCteExtC
-            }
+        // 1. Ajustar Corriente y ExtraC simultáneamente (primero)
+        const bolsaSincronizada = maxcte + (esTarjeta ? maxExtC : 0)
+
+        if (exceso > 0 && bolsaSincronizada > 0) {
+            // CASO EXCESO: reducir proporcionalmente
+            const restante = Math.max(0, bolsaSincronizada - exceso)
+            const factor   = restante / bolsaSincronizada
+            dctoCte = maxcte * factor
+            if (esTarjeta) dctoExtraC = maxExtC * factor
+            const reduccionCteExtC = (maxcte - dctoCte) + (esTarjeta ? (maxExtC - dctoExtraC) : 0)
+            exceso -= reduccionCteExtC
+
+        } else if (PagoSNR < abonoMinimo && bolsaSincronizada > 0) {
+            // CASO DÉFICIT (excepción de negocio): aumentar proporcionalmente
+            const deficit   = abonoMinimo - PagoSNR
+            const aumentada = bolsaSincronizada + deficit
+            const factor    = aumentada / bolsaSincronizada
+            dctoCte = maxcte * factor
+            if (esTarjeta) dctoExtraC = maxExtC * factor
         }
 
-        // 2. Reducir Mora (al final)
+        // 2. Reducir Mora (al final, solo si todavía hay exceso)
         if (exceso > 0) {
             const reduccionMora = Math.min(dctoMora, exceso)
             dctoMora -= reduccionMora
